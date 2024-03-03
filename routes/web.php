@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\NewAlbum;
+use App\Models\Album;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +24,11 @@ Route::get('/mail', function () {
     Mail::raw('What is your favorite framework?', function ($message) {
         $message->to('david@itp405.com')->subject('Hello, David');
     });
+});
+
+Route::get('/new-album', function () {
+    // We wouldn't normally have this route. This would happen when an artist
+    // uploads a new album.
+    $album = Album::find(150);
+     Mail::to('david@itp405.com')->send(new NewAlbum($album));
 });
