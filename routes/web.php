@@ -30,5 +30,5 @@ Route::get('/new-album', function () {
     // We wouldn't normally have this route. This would happen when an artist
     // uploads a new album.
     $album = Album::find(150);
-     Mail::to('david@itp405.com')->send(new NewAlbum($album));
+     Mail::to('david@itp405.com')->queue(new NewAlbum($album));
 });
