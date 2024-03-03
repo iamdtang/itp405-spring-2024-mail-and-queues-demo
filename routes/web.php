@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/mail', function () {
+    Mail::raw('What is your favorite framework?', function ($message) {
+        $message->to('david@itp405.com')->subject('Hello, David');
+    });
+});
